@@ -4,21 +4,22 @@ var generateBtn = document.querySelector("#generate");
 // arrays from which the password will be generated
 var sKeys = ["!", "@", "#", "$", "%", "^", "&", "*"];
 var lKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var numKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+var numKeys = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var uKeys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
+// Write password to the #password input
+function writePassword() {
 
-// function to collect the parameters
-function params() {
-
-  //this will collect the number of characters to use in the password
-  var Len = prompt("How many characters to generate in the password?", "Please choose a number between 8 and 128");
+  //this will collect the number of characters to use in the password and converts the string to integer
+  var Len = parseInt(prompt("How many characters to generate in the password? Please choose a number between 8 and 128"));
 
   while (Len < 8 || Len > 128) {
     alert("The password has to be between 8 and 128 characters long");
-    var Len = prompt("How many characters to generate in the password?", "Please choose a number between 8 and 128");
+    var Len = prompt("How many characters to generate in the password? Please choose a number between 8 and 128");
   };
   console.log(Len);
   //four boolean values for the password character parameters
@@ -35,80 +36,38 @@ function params() {
     var Num = confirm("Would you like numbers in the password? Click Ok for yes or Cancel for no");
     var Spec = confirm("would you like special characters in the password? Click Ok for yes or Cancel for no");
   }
+  //create a variable to house the custom array based on the prompts
+  var combine = "";
 
-  //this variable puts the four booleans into an array
-  var options = [uC, lC, Num, Spec];
+  //conditionals that check which arrays to add together
+  if (uC) { combine = combine.concat(uKeys) };
+  if (lC) { combine = combine.concat(lKeys) };
+  if (Num) { combine = combine.concat(numKeys) };
+  if (Spec) { combine = combine.concat(sKeys) };
 
-  console.log(options);
-  return options;
-};
-//function that will calculate a random index within an array to pull DOES NOT WORK RIGHT NOW create four functions to call specific arrays
-function Random() {
-  arr[Math.floor(Math.random() * arr.length)];
-};
+  //checks to see if the above is running correctly
+  console.log(combine);
 
-// Write password to the #password input
-function writePassword() {
-
-  //runs the function to collect `the password parameters
-  let options = params();
-  //this will add string together in an array
-  var combine = [];
-  //this will get a character for the password 
-
-  var gen = [];
-
-   //this will put all of the characters into an array 
+  //create new variable that will house the password based on the length requirements and above parameters
   var pass = [];
 
-  // //conditionals to incorporate the chosen parameters
-  if (options.uC) {
-   combine = combine.concat(lKeys);
-   //this adds a random character from the array concated above to the newly defined gen array. Same will be done below
-   gen.push(Random(lKeys));
 
+  //for some reason it's pulling commas; need to fix
+  for (i = 0; i < Len; i++) {
+
+    var gen = combine[Math.floor(Math.random()*combine.length)];
+    pass.push(gen);
   }
+console.log(pass)
 
-  if (options.lC) {
-    combine = combine.concat(uKeys);
-   gen.push(Random(uKeys));
+//converts the array into a string to push to the display
+var finalPass = pass.join("");
 
-   }
+console.log(finalPass)
 
-  if (options.Num) {
-  combine = combine.concat(numKeys);
-  gen.push(Random(numKeys));
-  }
+document.querySelector("#password").value = finalPass;
 
-  if (options.Spec) {
-  combine = combine.concat(sKeys);
-   gen.push(Random(sKeys));
 
-  }
-
-  for (let i = 0; i < parseInt(options.Len); i++) {
-   pass.push(Random(combine));
-
-  }
-
-  for (let i = 0; i < gen.length; i++) {
-    pass[i] = gen[i];
 
 }
 
-  console.log(combine);
-  console.log(gen);
-   console.log(pass.join(""));
-  return pass.join("");
-
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-  }
-
-  // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword);
-
-//the below was with the starter code
-  // var password = generatePassword();
