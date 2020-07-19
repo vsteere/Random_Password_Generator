@@ -24,6 +24,7 @@ function params() {
     alert("The password has to be less than 128 characters long");
     return;
   }
+  console.log(Len);
 //four boolean values for the password character parameters
   var uC = confirm("Would you like uppercase characters in the password? Ok for yes or Cancel for no");
   var lC = confirm("Would you like lowercase characters in the password? Ok for yes or Cancel for no");
@@ -33,10 +34,10 @@ function params() {
 //a check and breaking alert if none of the conditions are selected
   while (uC===false && lC===false && Num===false && Spec===false) {
   alert("You did not choose any of the conditions")
-  var uC = confirm("Would you like uppercase characters in the password? Ok for yes or Cancel for no");
-  var lC = confirm("Would you like lowercase characters in the password? Ok for yes or Cancel for no");
-  var Num = confirm("Would you like numbers in the password? Ok for yes or Cancel for no");
-  var Spec = confirm("would you like special characters in the password? Ok for yes or Cancel for no");
+  var uC = confirm("Would you like uppercase characters in the password? Click Ok for yes or Cancel for no");
+  var lC = confirm("Would you like lowercase characters in the password? Click Ok for yes or Cancel for no");
+  var Num = confirm("Would you like numbers in the password? Click Ok for yes or Cancel for no");
+  var Spec = confirm("would you like special characters in the password? Click Ok for yes or Cancel for no");
 }
 
 //this variable puts the four booleans into an array
@@ -46,9 +47,9 @@ console.log(params);
   return params;
 };
 //function that will calculate a random index within an array to pull 
-function Random(){
-  arr[Math.floor(math.random.arr.length)];
-}
+function Random(arr) {
+  arr[Math.floor(Math.random()*arr.length)];
+};
 
 // Write password to the #password input
 function writePassword() {
@@ -63,25 +64,25 @@ function writePassword() {
   var pass = [];
 
   //conditionals to incorporate the chosen parameters
-  if (options.lC) {
-    combine=combine.concat(lKeys);
+  if (options.uC) {
+    combine = combine.concat(lKeys);
     gen.push(Random(lKeys));
 
-  }
+      }
 
-  if (options.uC){
-    combine=combine.concat(uKeys);
+  if (options.lC){
+    combine = combine.concat(uKeys);
     gen.push(Random(uKeys));
 
   }
 
   if (options.Num) {
-    combine=combine.concat(numKeys);
+    combine = combine.concat(numKeys);
     gen.push(Random(numKeys));
   }
  
   if (options.Spec) {
-    combine=combine.concat(sKeys);
+    combine = combine.concat(sKeys);
     gen.push(Random(sKeys));
 
   }
