@@ -1,7 +1,7 @@
 # Random Password Generator
 ## Homework 3
 
-Summary
+### Summary
 This project contains an HTML file that generates a randomized password using several user entered parameters
 
 User is prompted for the following parameters:
@@ -12,7 +12,7 @@ User is prompted for the following parameters:
 - inclusion of special characters
 
 
-Design
+### Design
 The project objective is to create an on-demand application that generates a password based on user prompts of length and character parameters. 
 
 It was executed using four arrays that defined the different types of characters a user can choose, 
