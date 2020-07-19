@@ -37,7 +37,7 @@ function writePassword() {
     var Spec = confirm("would you like special characters in the password? Click Ok for yes or Cancel for no");
   }
   //create a variable to house the custom array based on the prompts
-  var combine = "";
+  var combine = [];
 
   //conditionals that check which arrays to add together
   if (uC) { combine = combine.concat(uKeys) };
@@ -52,7 +52,7 @@ function writePassword() {
   var pass = [];
 
 
-  //for some reason it's pulling commas; need to fix
+  //for loop to create the password based on length requirements
   for (i = 0; i < Len; i++) {
 
     var gen = combine[Math.floor(Math.random()*combine.length)];
@@ -65,6 +65,7 @@ var finalPass = pass.join("");
 
 console.log(finalPass)
 
+//pushes the string content to the display textbox
 document.querySelector("#password").value = finalPass;
 
 
