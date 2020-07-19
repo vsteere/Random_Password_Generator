@@ -4,14 +4,14 @@ var generateBtn = document.querySelector("#generate");
 // arrays from which the password will be generated
 var sKeys = ["!", "@", "#", "$", "%", "^", "&", "*"];
 var lKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var Nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+var numKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 var uKeys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 
 
 
 // function to collect the parameters
-function Params() {
+function params() {
   
   //this will collect the number of characters to use in the password
   var Len = prompt("How many characters to generate in the password? Please choose a number between 8 and 128");
@@ -29,6 +29,16 @@ function Params() {
   var lC = confirm("Would you like lowercase characters in the password? Ok for yes or Cancel for no");
   var Num = confirm("Would you like numbers in the password? Ok for yes or Cancel for no");
   var Spec = confirm("would you like special characters in the password? Ok for yes or Cancel for no");
+
+//a check and breaking alert if none of the conditions are selected
+  while (uC===false && lC===false && Num===false && Spec===false) {
+  alert("You did not choose any of the conditions")
+  var uC = confirm("Would you like uppercase characters in the password? Ok for yes or Cancel for no");
+  var lC = confirm("Would you like lowercase characters in the password? Ok for yes or Cancel for no");
+  var Num = confirm("Would you like numbers in the password? Ok for yes or Cancel for no");
+  var Spec = confirm("would you like special characters in the password? Ok for yes or Cancel for no");
+}
+
 //this variable puts the four booleans into an array
   var params = [uC, lC, Num, Spec];
 
@@ -44,20 +54,52 @@ function Random(){
 function writePassword() {
   // var password = generatePassword();
 //runs the function to collect the password parameters
-  let options = Params();
+  let options = params();
 //this will add string together in an array
-  var join = [];
+  var combine = [];
  //this will get a character for the password 
   var gen = [];
  //this will put all of the characters into an array 
   var pass = [];
 
-  if (params.lC) {
-    join=join.concat(lKeys);
+  //conditionals to incorporate the chosen parameters
+  if (options.lC) {
+    combine=combine.concat(lKeys);
     gen.push(Random(lKeys));
 
   }
+
+  if (options.uC){
+    combine=combine.concat(uKeys);
+    gen.push(Random(uKeys));
+
+  }
+
+  if (options.Num) {
+    combine=combine.concat(numKeys);
+    gen.push(Random(numKeys));
+  }
  
+  if (options.Spec) {
+    combine=combine.concat(sKeys);
+    gen.push(Random(sKeys));
+
+  }
+
+  for (let i=0; i<parseInt(options.Len); i++) {
+    pass.push(Random(combine));
+
+  }
+
+  for (let i=0; i<gen.length; i++){
+    pass[i] = gen[i];
+
+  }
+
+  console.log(combine);
+  console.log(gen);
+  console.log(pass.join(""));
+  return pass.join("");
   
   var passwordText = document.querySelector("#password");
 
