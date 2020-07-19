@@ -25,3 +25,6 @@ If statements were used to concat the arrays based on the user prompts; once the
 Once the password with the correct length and parameter requirements was generated, it is converted to a string
 and linked to the text box.
 
+#### Deployed Application URL
+https://vsteere.github.io/Random_Password_Generator/
+
