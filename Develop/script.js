@@ -7,62 +7,58 @@ var lKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n
 var Nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 var uKeys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
-// //user prompts setting parameters of the password
-// var uC = confirm("Would you like uppercase characters in the password? OK is Yes, Cancel is No");
-// var lC = confirm("Would you like to include lowercase characters in the password? OK is Yes, Cancel is No");
-// var Num = confirm("Would you like to include numbers in the password? OK is Yes, Cancel is No");
-// var Spec = confirm("Would you like to include special characters in the password? OK is Yes, Cancel is No");
 
 
-// //if all categories are said as no, prompt the user to redo
-// while (uC === false && lC === false && Num === false && Spec === false) {
-//   alert("You have not entered any parameters for the password");
-//   var uC = confirm("Would you like uppercase characters in the password? OK is Yes, Cancel is No");
-//   var lC = confirm("Would you like to include lowercase characters in the password? OK is Yes, Cancel is No");
-//   var Num = confirm("Would you like to include numbers in the password? OK is Yes, Cancel is No");
-//   var Spec = confirm("Would you like to include special characters in the password? OK is Yes, Cancel is No");
 
+// function to collect the parameters
+function Params() {
+  
+  //this will collect the number of characters to use in the password
+  var Len = prompt("How many characters to generate in the password? Please choose a number between 8 and 128");
 
-// // //user prompt for the password length
-// var Len = prompt("How many characters to generate in the password? Please choose a value between 8 and 128 characters");
+  if (Len < 8) {
+    alert("The password has to be at least 8 characters long");
+    return;
+  }
+  if (Len > 128) {
+    alert("The password has to be less than 128 characters long");
+    return;
+  }
+//four boolean values for the password character parameters
+  var uC = confirm("Would you like uppercase characters in the password? Ok for yes or Cancel for no");
+  var lC = confirm("Would you like lowercase characters in the password? Ok for yes or Cancel for no");
+  var Num = confirm("Would you like numbers in the password? Ok for yes or Cancel for no");
+  var Spec = confirm("would you like special characters in the password? Ok for yes or Cancel for no");
+//this variable puts the four booleans into an array
+  var params = [uC, lC, Num, Spec];
 
-// //check to see if the password is within the length parameter. If it is not have user re-enter
-// while (Len < 8 || Len > 128) {
-//   alert("Please enter a character value between 8 and 128");
-//   var Len = prompt("How many characters to generate in the password? Please choose a value between 8 and 128 characters");
-// }
-
-var uC = function() {
-  confirm("Would you like uppercase characters in the password?");
-  return;
+console.log(params);
+  return params;
 };
-
-var lC = function() {
-  confirm("Would you like lowercase characters in the password?");
-  return;
-};
-
-var Num = function() {
-  confirm("Would you like numbers in the password?");
-  return;
-};
-
-var Spec = function() {
-  confirm("would you like special characters in the password?");
-  return;
-};
-var Len = function() {
-  prompt("How many characters to generate in the password? Please choose a number between 8 and 128");
-  return;
-};
-
-var password = [uC, lC, Num, Spec, Len];
-
-console.log(password);
+//function that will calculate a random index within an array to pull 
+function Random(){
+  arr[Math.floor(math.random.arr.length)];
+}
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  // var password = generatePassword();
+//runs the function to collect the password parameters
+  let options = Params();
+//this will add string together in an array
+  var join = [];
+ //this will get a character for the password 
+  var gen = [];
+ //this will put all of the characters into an array 
+  var pass = [];
+
+  if (params.lC) {
+    join=join.concat(lKeys);
+    gen.push(Random(lKeys));
+
+  }
+ 
+  
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
